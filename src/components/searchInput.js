@@ -5,6 +5,7 @@ import { Input } from './utils';
 
 const SearchWrapper = styled.div`
   position: relative;
+  margin: 0;
 `;
 
 const SearchInput = () => {
@@ -48,11 +49,7 @@ const SearchInput = () => {
 
   return (
     <SearchWrapper>
-      <Input
-        value={value}
-        onChange={handleChange}
-        onBlur={() => setSuggestions([])}
-      />
+      <Input value={value} onChange={handleChange} />
       <Suggestions suggestions={suggestions} />
     </SearchWrapper>
   );

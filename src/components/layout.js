@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyle } from './utils';
+import Header from './header';
 
 const Layout = ({ children, showHeader }) => (
   <>
-    {showHeader && (
-      <header>
-        <h2>Twitter search</h2>
-      </header>
-    )}
+    {showHeader && <Header />}
     <main>{children}</main>
     <GlobalStyle />
   </>

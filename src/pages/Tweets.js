@@ -1,5 +1,14 @@
 import React from 'react';
 
-const Tweets = () => <h1>Tweets</h1>;
+import { Layout } from '../components';
+import { Page } from '../components/utils';
+
+const Tweets = () => (
+  <Layout>
+    <Page>
+      <h1>Tweets</h1>
+    </Page>
+  </Layout>
+);
 
 export default Tweets;

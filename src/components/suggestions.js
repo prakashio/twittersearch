@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const List = styled.ul`
   list-style: none;
@@ -24,7 +25,9 @@ const Suggestions = props => {
     suggestions.length > 0 && (
       <List>
         {suggestions.map(user => (
-          <li key={user.screenName}>{user.name}</li>
+          <Link to={`/tweets?username=${user.screenName}`}>
+            <li key={user.screenName}>{user.name}</li>
+          </Link>
         ))}
       </List>
     )
