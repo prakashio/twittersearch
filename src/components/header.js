@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchInput from './searchInput';
 import Title from './title';
@@ -14,12 +15,23 @@ const HeaderWrapper = styled.header`
   padding: 5px;
 `;
 
-const Header = () => (
-  <HeaderWrapper>
-    <Title />
-    <SearchInput />
-    <Button>Search</Button>
-  </HeaderWrapper>
-);
+const Header = props => {
+  const [value, setValue] = useState('');
 
-export default Header;
+  const handleSearch = () => {
+    props.history.push(`/tweets?q=${value}`);
+  };
+  return (
+    <HeaderWrapper>
+      <Title />
+      <SearchInput
+        value={value}
+        setValue={setValue}
+        handleSearch={handleSearch}
+      />
+      <Button>Search</Button>
+    </HeaderWrapper>
+  );
+};
+
+export default withRouter(Header);

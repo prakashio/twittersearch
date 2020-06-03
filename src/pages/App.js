@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { Twitter } from '../assets';
 import { SearchInput, Layout } from '../components';
 import { Button } from '../components/utils';
@@ -18,16 +19,28 @@ const MainWrapper = styled.div`
   height: 100vh;
 `;
 
-const App = () => (
-  <Layout showHeader={false}>
-    <MainWrapper>
-      <h1>
-        Twitter <Image src={Twitter} alt="logo" /> Search
-      </h1>
-      <SearchInput />
-      <Button>Search</Button>
-    </MainWrapper>
-  </Layout>
-);
+const App = props => {
+  const [value, setValue] = useState('');
 
-export default App;
+  const handleSearch = () => {
+    props.history.push(`/tweets?q=${value}`);
+  };
+
+  return (
+    <Layout showHeader={false}>
+      <MainWrapper>
+        <h1>
+          Twitter <Image src={Twitter} alt="logo" /> Search
+        </h1>
+        <SearchInput
+          value={value}
+          setValue={setValue}
+          handleSearch={handleSearch}
+        />
+        <Button onClick={handleSearch}>Search</Button>
+      </MainWrapper>
+    </Layout>
+  );
+};
+
+export default withRouter(App);
